@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% block body %}
+<div class="container mt-4">
+    <h1>Download start page</h1>
+    <form>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Youtube URL</label>
+            {{form.link}}
+            {{form.link.errors}}
+        </div>
+        <button type="submit" class="btn btn-primary">Next</button>
+    </form>
+</div>
+    {% endblock body %}

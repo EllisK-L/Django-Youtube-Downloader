@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
+from .views import downloader
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("",include("downloader.urls"))
+    path('', downloader,name="downloader-start"),
 ]
