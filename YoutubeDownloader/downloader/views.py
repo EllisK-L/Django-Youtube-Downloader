@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from .forms import DownloadStartForm
+from .utils import checkLink
 
 # Create your views here.
 
 def downloader(request):
     if request.POST:
-        pass
+        form = reu
+        print("RE")
     form = DownloadStartForm()
     context = {
         "form":form,
