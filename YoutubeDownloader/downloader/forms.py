@@ -6,3 +6,13 @@ class DownloadStartForm(forms.Form):
         "id":"download_link_input",
         "placeholder":"https://youtube.com/......"
     }))
+
+    def clean(self):
+        link = self.cleaned_data.get("link")
+
+        if "youtube.com" not in link:
+            print("not valid")
+            raise forms.ValidationError("Please input a Youtube link")
+            return link
+
+        return link
