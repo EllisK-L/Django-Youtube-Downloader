@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import DownloadStartForm
-from .utils import checkLink
+from .utils import checkLink, getVid
 
 # Create your views here.
 
@@ -14,6 +14,7 @@ def downloader(request):
         print("RE")
         if form.is_valid():
             print("VALIUD")
+            print(form.cleaned_data)
         else:
             return render(request, "downloader/download_start.html",context=context)
 
