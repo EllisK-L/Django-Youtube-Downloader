@@ -1,17 +1,32 @@
 {% extends 'base/base.html' %}
 {% block body %}
+{% load static %}
 <div class="container mt-4">
-    <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-      </div>
+    <!-- <div class="progress"> -->
+        <!-- <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div> -->
+      <!-- </div> -->
     <h1>Download start page</h1>
-    <form>
+    {% if error != "none" %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+      </div>
+    {% endif %}
+    <form method="POST">
+    {% csrf_token %}
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Youtube URL</label>
+            <label for="exampleInputEmail1" class="form-label">SoundCloud URL</label>
             {{form.link}}
             {{form.link.errors}}
         </div>
         <button type="submit" class="btn btn-primary">Next</button>
     </form>
+    {% if downloadLink != "none" %}
+    <h2>You're file is ready for download</h2>
+    <h3>\/ Downlaod Now! \/</h3>
+    <a href="media/downloader/newSong.mp3" download >
+        <img src="{% static 'downloader/downloadicon.png' %}" alt="">
+    </a>
+
+    {% endif %}
 </div>
     {% endblock body %}
