@@ -3,11 +3,22 @@ from .forms import DownloadStartForm
 from .utils import checkLink
 import youtube_dl
 from django.conf import settings
+from django.core import serializers
+from django.http import JsonResponse
 from django.contrib.staticfiles.storage import staticfiles_storage
 import os, shutil
 import random
 
 # Create your views here.
+
+def downloading(request):
+    if request.is_ajax and request.method == "POST":
+        form = DownloadStartForm(request.POST)
+        if form.is_valid():
+            ser_instance = serializers.serialize('json', [ instance, ])
+            # send to client side.
+            return JsonResponse({"instance": ser_instance}, status=200)
+    return JsonResponse({"error": ""}, status=400)
 
 def downloader(request):
     form = DownloadStartForm()

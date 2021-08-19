@@ -11,14 +11,14 @@
         {{ error }}
       </div>
     {% endif %}
-    <form method="POST">
+    <form id="link-form">
     {% csrf_token %}
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">SoundCloud URL</label>
             {{form.link}}
             {{form.link.errors}}
         </div>
-        <button type="submit" class="btn btn-primary">Next</button>
+        <button type="button" class="btn btn-primary">Next</button>
     </form>
     {% if downloadLink != "none" %}
     <h2>You're file is ready for download</h2>
@@ -29,4 +29,19 @@
 
     {% endif %}
 </div>
+
+<script>
+$("#link-form").submit(function(e){
+    e.preventDefault();
+    let link = $(this).val();
+    $.ajax({
+        type: 'GET',
+        url: "{% url 'downloading' %},
+        data:{"link":link},
+        success: function (response){
+            
+        }
+    })
+})
+</script>
     {% endblock body %}
