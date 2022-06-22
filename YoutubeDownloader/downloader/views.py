@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import DownloadStartForm
 from .utils import checkLink, getVid
 
@@ -15,6 +15,7 @@ def downloader(request):
         if form.is_valid():
             print("VALIUD")
             print(form.cleaned_data)
+            return redirect('downloader-info', url=form.cleaned_data)
         else:
             return render(request, "downloader/download_start.html",context=context)
 
@@ -24,3 +25,10 @@ def downloader(request):
         "title":"Download"
     }
     return render(request, "downloader/download_start.html",context=context)
+
+def downloadInfo(request, url=None):
+    print(url)
+    context = {
+        "title":"Download Info"
+    }
+    return render(request, "downloader/download_info.html", context=context)

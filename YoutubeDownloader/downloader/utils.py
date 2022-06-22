@@ -6,7 +6,7 @@ def getVid(link):
 
     with ydl:
         result = ydl.extract_info(
-            'https://www.youtube.com/watch?v=RvIoOyNshOc',
+            link,
             download=False # We just want to extract the info
         )
 
@@ -18,9 +18,11 @@ def getVid(link):
         video = result
 
     print(video)
-    video_url = video['url']
     print(video_url)
 
 
 def checkLink(link):
     print(link)
+
+if __name__ == "__main__":
+    getVid("https://www.youtube.com/watch?v=rU0f4kmBpX8")
